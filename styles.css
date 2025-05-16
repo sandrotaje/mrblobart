@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@400;700&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: rgb(186, 218, 85);
+  font-size: 20px;
+  font-family: impact, impact-w01-2010, sans-serif;
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+}
+
+.logo img {
+  width: 120px;
+  height: auto;
+  display: block;
+}
+
+nav a {
+  color: rgb(189 248 5);
+  text-decoration: none;
+  margin-left: 25px;
+  font-weight: bold;
+  transition: all 0.3s;
+  display: inline-block;
+}
+
+nav a:hover {
+  transform: scale(1.1);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.art-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+}
+
+.social-icons a {
+  margin: 0 10px;
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
+  filter: invert(90%) sepia(96%) saturate(1260%) hue-rotate(12deg)
+    brightness(108%) contrast(98%);
+}
+
+.social-icons a:hover {
+  transform: scale(1.1);
+}

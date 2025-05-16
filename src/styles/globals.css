@@ -1,0 +1,169 @@
+/* Base Styles */
+:root {
+  --primary-color: #bdf805;
+  --background-color: #000000;
+  --text-color: #ffffff;
+  --accent-color: #bada55;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Impact', 'Impact W01 2010', 'Arial Narrow', sans-serif;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.5px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.4;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem 0;
+}
+
+/* Smooth scrolling for better UX */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+:focus {
+  outline: 2px solid var(--primary-color, #bdf805);
+  outline-offset: 2px;
+}
+
+button:focus,
+a:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(189, 248, 5, 0.5);
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: #fff;
+    color: #000;
+  }
+  
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Impact, impact-w01-2010, sans-serif;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+/* Remove focus outline */
+a:focus, a:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Update social icon hover effect */
+.social-icon:hover {
+  filter: invert(90%) sepia(96%) saturate(1260%) hue-rotate(12deg) 
+    brightness(108%) contrast(98%) !important;
+  transform: scale(1.2);
+}
+
+/* Ensure social icons maintain their color on hover */
+.social-icon {
+  filter: invert(90%) sepia(96%) saturate(1260%) hue-rotate(12deg) 
+    brightness(108%) contrast(98%) !important;
+  transition: transform 0.3s;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Buttons */
+.cta-button {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.cta-button:hover {
+  background-color: transparent;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(189, 248, 5, 0.2);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+}

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Mr Blob Art - Street artist creating vibrant and thought-provoking urban artwork" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="author" content="Mr Blob Art" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mrblob.art/" />
+    <meta property="og:title" content="Mr Blob Art - Street Artist" />
+    <meta property="og:description" content="Vibrant and thought-provoking street art by Mr Blob" />
+    <meta property="og:image" content="/images/og-image.jpg" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://mrblob.art/" />
+    <meta name="twitter:title" content="Mr Blob Art - Street Artist" />
+    <meta name="twitter:description" content="Vibrant and thought-provoking street art by Mr Blob" />
+    <meta name="twitter:image" content="/images/og-image.jpg" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/avif" href="/images/logo.avif" />
+    <link rel="apple-touch-icon" href="/images/logo.avif" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/images/logo.avif" as="image" />
+    <link rel="preload" href="/images/index.avif" as="image" />
+    
+    <title>Mr Blob Art | Street Artist</title>
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload Google Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    </noscript>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Load Google Fonts asynchronously -->
+    <script>
+      // Load Google Fonts asynchronously
+      const loadFonts = () => {
+        const link = document.createElement('link');
+        link.href = 'https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@400;700&display=swap';
+        link.rel = 'stylesheet';
+        document.head.appendChild(link);
+      };
+      
+      // Load fonts after the page has loaded
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadFonts);
+      } else {
+        loadFonts();
+      }
+    </script>
+  </body>
+</html>
