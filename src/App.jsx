@@ -8,6 +8,8 @@ import Loading from './components/Loading/Loading';
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
+const Walls = lazy(() => import('./pages/Walls'));
+const WallDetail = lazy(() => import('./pages/WallDetail'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
+              <Route path="/walls" element={<Walls />} />
+              <Route path="/walls/:id" element={<WallDetail />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
