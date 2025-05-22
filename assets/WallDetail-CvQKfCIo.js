@@ -1,0 +1,2 @@
+import{j as a}from"./main-CzjHNcCP.js";const c=({imageUrl:l,onClose:s})=>a.jsx("div",{className:"modal-overlay",onClick:s,children:a.jsxs("div",{className:"modal-content",onClick:o=>o.stopPropagation(),children:[a.jsx("button",{className:"modal-close",onClick:s,children:"×"}),a.jsx("img",{src:l,alt:"Full size",className:"modal-image"})]})});export{c as I};
+//# sourceMappingURL=WallDetail-CvQKfCIo.js.map
