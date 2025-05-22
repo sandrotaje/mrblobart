@@ -1,17 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import wallsData from '../data/wallsData';
+import PageHero from '../components/PageHero';
 import '../styles/Walls.css';
 
 const Walls = () => {
   return (
     <div className="walls-page">
-      <div className="walls-hero">
-        <div className="hero-content">
-          <h1>Walls Collection</h1>
-        </div>
-      </div>
-      <div className="walls-content-section">
+      <PageHero title="Walls Collection" />
+      <div className="about-content-section">
         <div className="walls-grid">
           {wallsData.map((wall) => (
             <Link to={`/walls/${wall.id}`} key={wall.id} className="wall-item">

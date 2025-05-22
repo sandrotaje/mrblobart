@@ -1,0 +1,28 @@
+.about-hero .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.about-hero h1 {
+  font-size: 3.5rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1;
+  margin: 0;
+  animation: fadeInUp 1s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-hero h1 {
+    font-size: 2.5rem;
+  }
+}
