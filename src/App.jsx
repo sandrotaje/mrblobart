@@ -4,7 +4,6 @@ import './styles/globals.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Loading from './components/Loading/Loading';
-import { BASE_URL } from './config';
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'));
@@ -17,7 +16,7 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   return (
-    <Router basename={BASE_URL}>
+    <Router>
       <div className="app">
         <Header />
         <main className="main-content">
