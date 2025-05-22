@@ -4,17 +4,20 @@ import './styles/globals.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Loading from './components/Loading/Loading';
+import { BASE_URL } from './config';
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Walls = lazy(() => import('./pages/Walls'));
 const WallDetail = lazy(() => import('./pages/WallDetail'));
+const Canvas = lazy(() => import('./pages/Canvas'));
+const CanvasDetail = lazy(() => import('./pages/CanvasDetail'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   return (
-    <Router>
+    <Router basename={BASE_URL}>
       <div className="app">
         <Header />
         <main className="main-content">
@@ -24,6 +27,8 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/walls" element={<Walls />} />
               <Route path="/walls/:id" element={<WallDetail />} />
+              <Route path="/canvas" element={<Canvas />} />
+              <Route path="/canvas/:id" element={<CanvasDetail />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
