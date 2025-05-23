@@ -14,7 +14,7 @@ const Home = () => {
             <p className="tagline">Transforming urban spaces with vibrant street art</p>
             <div className="cta-buttons">
               <Link to="/about" className="cta-button">About the Artist</Link>
-              <Link to="/gallery" className="cta-button secondary">View Gallery</Link>
+              <Link to="/walls" className="cta-button secondary">View Gallery</Link>
             </div>
           </div>
         </div>

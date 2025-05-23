@@ -7,7 +7,8 @@ const PageHero = ({ title }) => {
       className="about-hero"
       style={{
         background: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(\'/images/index.avif\') no-repeat center center/cover',
-        height: '30vh',
+        height: '25vh',
+        minHeight: '200px',
         marginBottom: '1rem'
       }}
     >
