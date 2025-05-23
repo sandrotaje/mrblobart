@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+      sessionStorage.redirect = location.href;
+    </script>
+    <meta http-equiv="refresh" content="0;URL='https://mrblobart.com/'">
+  </head>
+  <body>
+    <h1>Redirecting...</h1>
+    <script>
+      // Fallback in case meta refresh doesn't work
+      window.location.href = 'https://mrblobart.com/';
+    </script>
+  </body>
+</html>

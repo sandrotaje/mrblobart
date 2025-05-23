@@ -16,7 +16,9 @@ const Walls = () => {
                 <img src={wall.imageUrl} alt={wall.title} />
                 <div className="wall-overlay">
                   <h3>{wall.title}</h3>
-                  <p>{wall.description}</p>
+                  <p style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {wall.description.split('\n').slice(0, 3).join('\n')}
+                  </p>
                 </div>
               </div>
             </Link>

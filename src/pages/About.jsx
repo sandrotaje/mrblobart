@@ -70,7 +70,7 @@ const About = () => {
                 </p>
               </div>
               <div className="cta-buttons">
-                <Link to="/contact" className="cta-button">Get in Touch</Link>
+                <a href="https://www.instagram.com/direct/new?text=Hello%20Mr%20Blob%20Art%2C%0AI%20am%20interested%20in%20your%20artwork.%0A%0APlease%20get%20in%20touch%20with%20me." target="_blank" rel="noopener noreferrer" className="cta-button">Send IM in Instagram</a>
                 <Link to="/walls" className="cta-button secondary">View Gallery</Link>
               </div>
             </div>

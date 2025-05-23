@@ -10,6 +10,7 @@ const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Walls = lazy(() => import('./pages/Walls'));
 const WallDetail = lazy(() => import('./pages/WallDetail'));
+const AdvWalls = lazy(() => import('./pages/AdvWalls'));
 const Canvas = lazy(() => import('./pages/Canvas'));
 const CanvasDetail = lazy(() => import('./pages/CanvasDetail'));
 const NotFound = lazy(() => import('./pages/NotFound'));
@@ -26,6 +27,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/walls" element={<Walls />} />
               <Route path="/walls/:id" element={<WallDetail />} />
+              <Route path="/advWalls" element={<AdvWalls />} />
               <Route path="/canvas" element={<Canvas />} />
               <Route path="/canvas/:id" element={<CanvasDetail />} />
               <Route path="*" element={<NotFound />} />
