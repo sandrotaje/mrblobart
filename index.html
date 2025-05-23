@@ -6,17 +6,26 @@
     <meta name="description" content="Mr Blob Art - Street artist creating vibrant and thought-provoking urban artwork" />
     <meta name="theme-color" content="#000000" />
     <meta name="author" content="Mr Blob Art" />
+    <script>
+      (function(){
+        const redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://mrblob.art/" />
+    <meta property="og:url" content="https://mrblobart.com/" />
     <meta property="og:title" content="Mr Blob Art - Street Artist" />
     <meta property="og:description" content="Vibrant and thought-provoking street art by Mr Blob" />
     <meta property="og:image" content="/images/og-image.jpg" />
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://mrblob.art/" />
+    <meta name="twitter:url" content="https://mrblobart.com/" />
     <meta name="twitter:title" content="Mr Blob Art - Street Artist" />
     <meta name="twitter:description" content="Vibrant and thought-provoking street art by Mr Blob" />
     <meta name="twitter:image" content="/images/og-image.jpg" />
