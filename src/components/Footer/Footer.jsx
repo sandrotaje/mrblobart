@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container">
         <div className="social-icons">
           <a 
-            href="https://instagram.com" 
+            href="https://instagram.com/mrblobart" 
             target="_blank" 
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -19,7 +19,7 @@ const Footer = () => {
             />
           </a>
           <a 
-            href="https://facebook.com" 
+            href="https://www.facebook.com/mrblobart" 
             target="_blank" 
             rel="noopener noreferrer"
             aria-label="Facebook"
@@ -31,7 +31,7 @@ const Footer = () => {
             />
           </a>
           <a 
-            href="https://youtube.com" 
+            href="https://www.youtube.com/@mrblobart" 
             target="_blank" 
             rel="noopener noreferrer"
             aria-label="YouTube"
