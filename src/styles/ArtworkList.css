@@ -34,12 +34,13 @@
   animation: fadeInUp 1s ease-out 0.2s;
 }
 
-.artwork-grid {
+.artwork-list-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 4rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
   margin: 0 auto;
   max-width: 1200px;
+  padding: 1rem;
 }
 
 .artwork-item {

@@ -29,8 +29,8 @@ const ArtworkList = ({ type }) => {
   return (
     <div className="artwork-list-page">
       <PageHero title={title} />
-      <div className="artwork-list-content">
-        <div className="artwork-grid">
+      <div className="about-content-section">
+        <div className="artwork-list-grid">
           {artworks.map((artwork) => (
             <Link to={`/${artwork.type}/${artwork.id}`} key={artwork.id} className="artwork-item">
               <div className="artwork-image-container">
