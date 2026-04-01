@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageModal from '../../components/ImageModal.astro';
+import { getCollection } from 'astro:content';
+import '../../styles/ArtworkDetail.css';
+import '../../styles/ImageModal.css';
+
+export async function getStaticPaths() {
+  const artworks = await getCollection('canvas');
+  return artworks.map((artwork) => ({
+    params: { id: String(artwork.data.id) },
+    props: { artwork: artwork.data },
+  }));
+}
+
+const { artwork } = Astro.props;
+---
+
+<BaseLayout
+  title={`${artwork.title} | Mr Blob Art`}
+  description={artwork.description || `${artwork.title} - Art by Mr Blob`}
+  ogTitle={`${artwork.title} - Mr Blob Art`}
+  ogDescription={artwork.description || `${artwork.title} - Art by Mr Blob`}
+  ogImage={artwork.imageUrl}
+  ogUrl={`https://mrblobart.com/canvas/${artwork.id}`}
+>
+  <div class="artwork-detail-page">
+    <div class="artwork-detail-hero">
+      <h1>{artwork.title}</h1>
+    </div>
+    <div class="artwork-detail-content-section">
+      <div class="artwork-detail-grid">
+        <div class="artwork-detail-image-container" data-modal-src={artwork.imageUrl}>
+          <img src={artwork.imageUrl} alt={artwork.title} />
+        </div>
+        <div class="artwork-detail-info">
+          {artwork.description && (
+            <p class="artwork-detail-description">{artwork.description}</p>
+          )}
+          <div class="artwork-detail-details">
+            {artwork.year && <p><strong>Year:</strong> {artwork.year}</p>}
+            {artwork.dimensions && <p><strong>Dimensions:</strong> {artwork.dimensions}</p>}
+            {artwork.technique && <p><strong>Technique:</strong> {artwork.technique}</p>}
+            {artwork.status && <p><strong>Status:</strong> {artwork.status}</p>}
+          </div>
+        </div>
+      </div>
+    </div>
+    <ImageModal />
+  </div>
+</BaseLayout>

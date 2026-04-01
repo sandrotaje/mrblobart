@@ -1,0 +1,16 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<section
+  class="about-hero"
+  style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/index.avif') no-repeat center center/cover; height: 25vh; min-height: 200px; margin-bottom: 1rem;"
+>
+  <div class="container">
+    <h1>{title}</h1>
+  </div>
+</section>

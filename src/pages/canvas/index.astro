@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { getCollection } from 'astro:content';
+import '../../styles/ArtworkList.css';
+
+const artworks = (await getCollection('canvas')).sort((a, b) => a.data.id - b.data.id);
+---
+
+<BaseLayout
+  title="Canvas Collection | Mr Blob Art"
+  description="Explore Mr Blob's canvas paintings and mixed media artworks."
+  ogTitle="Canvas Collection - Mr Blob Art"
+  ogDescription="Explore Mr Blob's canvas paintings and mixed media artworks."
+  ogUrl="https://mrblobart.com/canvas"
+>
+  <div class="artwork-list-page">
+    <PageHero title="Canvas Collection" />
+    <div class="about-content-section">
+      <div class="artwork-list-grid">
+        {artworks.map((artwork) => (
+          <a href={`/canvas/${artwork.data.id}`} class="artwork-item">
+            <div class="artwork-image-container">
+              <img src={artwork.data.imageUrl} alt={artwork.data.title} />
+              <div class="artwork-overlay">
+                <h3>{artwork.data.title}</h3>
+                {artwork.data.description && (
+                  <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    {artwork.data.description.split('\n').slice(0, 3).join('\n')}
+                  </p>
+                )}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/Home.css';
+---
+
+<BaseLayout>
+  <div class="home">
+    <section class="hero">
+      <div class="hero-content">
+        <div class="container">
+          <div class="cta-buttons">
+            <a href="/about" class="cta-button">About the Artist</a>
+            <a href="/walls" class="cta-button secondary">View Gallery</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image-container">
+        <img
+          src="/images/index.avif"
+          alt="Street Art by Mr Blob"
+          class="hero-image"
+          loading="eager"
+        />
+      </div>
+    </section>
+  </div>
+</BaseLayout>
