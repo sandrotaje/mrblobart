@@ -1,0 +1,67 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogUrl?: string;
+}
+
+const {
+  title = 'Mr Blob Art | Street Artist',
+  description = 'Mr Blob Art - Street artist creating vibrant and thought-provoking urban artwork',
+  ogTitle = 'Mr Blob Art - Street Artist',
+  ogDescription = 'Vibrant and thought-provoking street art by Mr Blob',
+  ogImage = '/images/og-image.jpg',
+  ogUrl = 'https://mrblobart.com/',
+} = Astro.props;
+
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/globals.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#000000" />
+    <meta name="author" content="Mr Blob Art" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={ogUrl} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={ogUrl} />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/avif" href="/images/favicon.avif" />
+    <link rel="apple-touch-icon" href="/images/favicon.avif" />
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/images/logo.avif" as="image" />
+
+    <title>{title}</title>
+
+  </head>
+  <body>
+    <div class="app">
+      <Header />
+      <main class="main-content">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

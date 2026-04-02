@@ -1,0 +1,31 @@
+<dialog class="image-modal" id="imageModal">
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Close modal">&times;</button>
+    <img src="" alt="Full size" class="modal-image" id="modalImage" />
+  </div>
+</dialog>
+
+<script>
+  const modal = document.getElementById('imageModal') as HTMLDialogElement;
+  const modalImage = document.getElementById('modalImage') as HTMLImageElement;
+  const closeBtn = modal?.querySelector('.modal-close');
+
+  // Open modal when clicking on artwork images with data-modal-src
+  document.querySelectorAll('[data-modal-src]').forEach((el) => {
+    el.addEventListener('click', () => {
+      const src = (el as HTMLElement).dataset.modalSrc;
+      if (src && modal && modalImage) {
+        modalImage.src = src;
+        modal.showModal();
+      }
+    });
+  });
+
+  // Close on button click
+  closeBtn?.addEventListener('click', () => modal?.close());
+
+  // Close on backdrop click
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) modal.close();
+  });
+</script>

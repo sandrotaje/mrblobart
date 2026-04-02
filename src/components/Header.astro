@@ -1,0 +1,39 @@
+---
+import '../styles/Header.css';
+const currentPath = Astro.url.pathname;
+---
+
+<header class="header">
+  <div class="container">
+    <div class="logo">
+      <a href="/">
+        <img src="/images/logo.avif" alt="Mr Blob Logo" />
+      </a>
+    </div>
+
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav>
+      <a href="/about" class={currentPath.startsWith('/about') ? 'active' : ''}>About</a>
+      <a href="/walls" class={currentPath.startsWith('/walls') ? 'active' : ''}>Walls</a>
+      <a href="/canvas" class={currentPath.startsWith('/canvas') ? 'active' : ''}>Canvas</a>
+      <a href="/advWalls" class={currentPath.startsWith('/advWalls') ? 'active' : ''}>ADV Walls</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('header nav');
+
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      nav.classList.toggle('active');
+    });
+  }
+</script>
