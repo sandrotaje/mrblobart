@@ -92,25 +92,6 @@ a:hover {
   color: var(--accent-color);
 }
 
-/* Remove focus outline */
-a:focus, a:focus-visible {
-  outline: none;
-  box-shadow: none;
-}
-
-/* Update social icon hover effect */
-.social-icon:hover {
-  filter: invert(90%) sepia(96%) saturate(1260%) hue-rotate(12deg) 
-    brightness(108%) contrast(98%) !important;
-  transform: scale(1.2);
-}
-
-/* Ensure social icons maintain their color on hover */
-.social-icon {
-  filter: invert(90%) sepia(96%) saturate(1260%) hue-rotate(12deg) 
-    brightness(108%) contrast(98%) !important;
-  transition: transform 0.3s;
-}
 
 .container {
   width: 100%;
@@ -231,13 +212,8 @@ img {
 }
 
 /* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 .fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
 /* Responsive Design */

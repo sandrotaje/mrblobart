@@ -21,7 +21,7 @@ const artworks = (await getCollection('advWalls')).sort((a, b) => a.data.id - b.
         {artworks.map((artwork) => (
           <a href={`/advWalls/${artwork.data.id}`} class="artwork-item">
             <div class="artwork-image-container">
-              <img src={artwork.data.imageUrl} alt={artwork.data.title} />
+              <img src={artwork.data.imageUrl} alt={artwork.data.title} loading="lazy" />
               <div class="artwork-overlay">
                 <h3>{artwork.data.title}</h3>
                 {artwork.data.description && (

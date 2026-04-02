@@ -4,17 +4,6 @@
   color: #fff;
 }
 
-.about-content h2 {
-  font-size: 3rem;
-  margin: 3rem 0 1.5rem;
-  color: var(--primary-color);
-  text-transform: uppercase;
-  letter-spacing: 0px;
-  position: relative;
-  padding-bottom: 0.5rem;
-  line-height: 1.1;
-}
-
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

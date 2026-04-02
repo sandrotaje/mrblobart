@@ -9,11 +9,14 @@
   background-color: rgba(0, 0, 0, 0.9);
   border: none;
   padding: 0;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.image-modal[open] {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
 }
 
 .image-modal::backdrop {
