@@ -13,9 +13,12 @@ const {
   description = 'Official site of Italian street artist Mr Blob. Contemporary fine art, sculptures, and adWalls: hand-painted advertising murals for brands',
   ogTitle = 'Mr Blob Art | Urban Fine Artist & Commercial adWalls',
   ogDescription = 'Official site of Italian street artist Mr Blob. Contemporary fine art, sculptures, and adWalls: hand-painted advertising murals for brands',
-  ogImage = '/images/og-image.jpg',
+  ogImage = '/images/index.avif',
   ogUrl = 'https://mrblobart.com/',
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImageAbsolute = new URL(ogImage, Astro.site);
 
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -30,20 +33,21 @@ import '../styles/globals.css';
     <meta name="description" content={description} />
     <meta name="theme-color" content="#000000" />
     <meta name="author" content="Mr Blob Art" />
+    <link rel="canonical" href={canonicalUrl} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={ogUrl} />
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageAbsolute} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={ogUrl} />
     <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={ogDescription} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImageAbsolute} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/avif" href="/images/favicon.avif" />
@@ -54,6 +58,7 @@ import '../styles/globals.css';
 
     <title>{title}</title>
 
+    <slot name="head" />
   </head>
   <body>
     <div class="app">
