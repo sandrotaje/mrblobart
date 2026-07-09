@@ -1,5 +1,6 @@
 {
-  "id": 1,
+  "id": "1",
+  "order": 1,
   "title": "ADV Wall 1",
   "imageUrl": "/images/adv-walls/1.avif",
   "description": "",

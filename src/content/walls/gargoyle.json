@@ -1,0 +1,11 @@
+{
+  "id": "gargoyle",
+  "order": 20,
+  "title": "Gargoyle",
+  "imageUrl": "/images/walls/gargoyle.avif",
+  "altText": "Stunning vertical street art mural by Mr Blob in France, featuring a majestic surreal phoenix character with glowing magma cracks, metallic wings, and vibrant neon light-emission effects on a black facade.",
+  "location": "Saint-Brieuc, Bretagne, France",
+  "year": "2019",
+  "festival": "JustDoPaint",
+  "technique": "Spray paint on wall"
+}
