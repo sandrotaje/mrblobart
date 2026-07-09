@@ -2,50 +2,138 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ImageModal from '../../components/ImageModal.astro';
 import { getCollection } from 'astro:content';
+import { artworkSrcset } from '../../utils/images';
 import '../../styles/ArtworkDetail.css';
 import '../../styles/ImageModal.css';
 
 export async function getStaticPaths() {
-  const artworks = await getCollection('canvas');
-  return artworks.map((artwork) => ({
-    params: { id: String(artwork.data.id) },
-    props: { artwork: artwork.data },
-  }));
+  const artworks = (await getCollection('canvas')).sort((a, b) => a.data.order - b.data.order);
+  return artworks.map((artwork, index) => {
+    const prevEntry = index > 0 ? artworks[index - 1] : null;
+    const nextEntry = index < artworks.length - 1 ? artworks[index + 1] : null;
+    return {
+      params: { id: artwork.data.id },
+      props: {
+        artwork: artwork.data,
+        prev: prevEntry ? { id: prevEntry.data.id, title: prevEntry.data.title } : null,
+        next: nextEntry ? { id: nextEntry.data.id, title: nextEntry.data.title } : null,
+      },
+    };
+  });
 }
 
-const { artwork } = Astro.props;
+const { artwork, prev, next } = Astro.props;
+
+const paragraphs = (artwork.description ?? '')
+  .split('\n\n')
+  .map((p) => p.trim())
+  .filter(Boolean);
+
+const metaSource =
+  paragraphs[0] || artwork.altText || `${artwork.title} - Art by Mr Blob`;
+const metaDescription =
+  metaSource.length > 160
+    ? `${metaSource.slice(0, 157).replace(/\s+\S*$/, '')}…`
+    : metaSource;
+
+const metaLine = [artwork.location, artwork.year].filter(Boolean).join(' — ');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'VisualArtwork',
+  name: artwork.title,
+  image: new URL(artwork.imageUrl, Astro.site).href,
+  url: new URL(`/canvas/${artwork.id}`, Astro.site).href,
+  creator: { '@type': 'Person', name: 'Mr Blob', url: 'https://mrblobart.com' },
+  artform: 'Painting',
+  ...(artwork.technique && { artMedium: artwork.technique }),
+  ...(artwork.year && { dateCreated: artwork.year }),
+  ...(artwork.location && { locationCreated: { '@type': 'Place', name: artwork.location } }),
+  ...(artwork.dimensions && { size: artwork.dimensions }),
+  ...(artwork.description?.trim() && { description: artwork.description }),
+};
 ---
 
 <BaseLayout
   title={`${artwork.title} | Mr Blob Art`}
-  description={artwork.description || `${artwork.title} - Art by Mr Blob`}
+  description={metaDescription}
   ogTitle={`${artwork.title} - Mr Blob Art`}
-  ogDescription={artwork.description || `${artwork.title} - Art by Mr Blob`}
+  ogDescription={metaDescription}
   ogImage={artwork.imageUrl}
   ogUrl={`https://mrblobart.com/canvas/${artwork.id}`}
 >
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
   <div class="artwork-detail-page">
-    <div class="about-hero">
-      <h1>{artwork.title}</h1>
+    <div class="artwork-detail-figure" data-modal-src={artwork.imageUrl}>
+      <img
+        src={artwork.imageUrl}
+        srcset={artworkSrcset(artwork.imageUrl)}
+        sizes="100vw"
+        alt={artwork.altText ?? artwork.title}
+      />
     </div>
-    <div class="artwork-detail-content-section">
-      <div class="artwork-detail-grid">
-        <div class="artwork-detail-image-container" data-modal-src={artwork.imageUrl}>
-          <img src={artwork.imageUrl} alt={artwork.title} />
-        </div>
-        <div class="artwork-detail-info">
-          {artwork.description && (
-            <p class="artwork-detail-description">{artwork.description}</p>
-          )}
-          <div class="artwork-detail-details">
-            {artwork.year && <p><strong>Year:</strong> {artwork.year}</p>}
-            {artwork.dimensions && <p><strong>Dimensions:</strong> {artwork.dimensions}</p>}
-            {artwork.technique && <p><strong>Technique:</strong> {artwork.technique}</p>}
-            {artwork.status && <p><strong>Status:</strong> {artwork.status}</p>}
-          </div>
-        </div>
+    <div class="artwork-detail-info">
+      <h1 class="artwork-detail-title">{artwork.title}</h1>
+      {metaLine && <p class="artwork-detail-meta-line">{metaLine}</p>}
+      <div class="artwork-detail-meta">
+        {artwork.festival && (
+          <p><span class="meta-label">Festival:</span> {artwork.festival}</p>
+        )}
+        {artwork.project && (
+          <p><span class="meta-label">Project:</span> {artwork.project}</p>
+        )}
+        {artwork.technique && (
+          <p><span class="meta-label">Technique:</span> {artwork.technique}</p>
+        )}
+        {artwork.dimensions && (
+          <p><span class="meta-label">Dimensions:</span> {artwork.dimensions}</p>
+        )}
+        {artwork.status && (
+          <p><span class="meta-label">Status:</span> {artwork.status}</p>
+        )}
+        {artwork.price && (
+          <p><span class="meta-label">Price:</span> {artwork.price}</p>
+        )}
+        {artwork.contact && (
+          <p><span class="meta-label">Contact:</span> <a href={`mailto:${artwork.contact}`}>{artwork.contact}</a></p>
+        )}
       </div>
+      {paragraphs.length > 0 && (
+        <div class="artwork-detail-description">
+          {paragraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+      )}
     </div>
+    {(prev || next) && (
+      <nav class="artwork-detail-nav" aria-label="Artwork navigation">
+        {prev ? (
+          <a
+            href={`/canvas/${prev.id}`}
+            class="artwork-nav-link artwork-nav-prev"
+            aria-label={`Previous artwork: ${prev.title}`}
+          >
+            <span class="artwork-nav-arrow" aria-hidden="true">←</span>
+            <span class="artwork-nav-title">{prev.title}</span>
+          </a>
+        ) : (
+          <span class="artwork-nav-spacer" aria-hidden="true" />
+        )}
+        {next ? (
+          <a
+            href={`/canvas/${next.id}`}
+            class="artwork-nav-link artwork-nav-next"
+            aria-label={`Next artwork: ${next.title}`}
+          >
+            <span class="artwork-nav-title">{next.title}</span>
+            <span class="artwork-nav-arrow" aria-hidden="true">→</span>
+          </a>
+        ) : (
+          <span class="artwork-nav-spacer" aria-hidden="true" />
+        )}
+      </nav>
+    )}
     <ImageModal />
   </div>
 </BaseLayout>

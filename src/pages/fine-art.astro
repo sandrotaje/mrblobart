@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/FineArt.css';
+---
+
+<BaseLayout
+  title="Fine Art | Mr Blob Art"
+  description="The official portfolio of Mr Blob: international street art, contemporary canvases, and adWalls campaigns"
+  ogTitle="Fine Art | Mr Blob Art"
+  ogDescription="The official portfolio of Mr Blob: international street art, contemporary canvases, and adWalls campaigns"
+  ogUrl="https://mrblobart.com/fine-art"
+>
+  <link slot="head" rel="preload" href="/images/about.avif" as="image" fetchpriority="high" />
+  <div class="fine-art-page">
+    <section class="fine-art-hero">
+      <div class="container">
+        <h1>Surreal visions, tangible textures</h1>
+        <p class="fine-art-hero-subtitle">
+          The official portfolio of Mr Blob: international street art,
+          contemporary canvases, and adWalls campaigns
+        </p>
+      </div>
+      <a href="#galleries" class="scroll-indicator" aria-label="Scroll down to explore">
+        <span class="scroll-indicator-label">Scroll down to explore</span>
+        <span class="scroll-indicator-chevron"></span>
+      </a>
+    </section>
+
+    <section id="galleries" class="gallery-banners">
+      <div class="container">
+        <div class="gallery-banners-grid">
+          <a href="/walls" class="gallery-banner gallery-banner-walls">
+            <span class="gallery-banner-label">WALLS</span>
+          </a>
+          <a href="/canvas" class="gallery-banner gallery-banner-canvas">
+            <span class="gallery-banner-label">CANVAS</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="artist-section">
+      <div class="container">
+        <h2>THE ARTIST</h2>
+        <p>
+          MR. BLOB — Contemporary Urban Artist &amp; Sculptor. Active on the
+          international urban art scene, Mr Blob bridges the gap between raw
+          street energy and the refined aesthetics of fine art. His work
+          explores the interaction between materials, shapes, and urban spaces,
+          featuring vivid characters and tangible textures that challenge the
+          boundaries of contemporary public art.
+        </p>
+        <a href="/about" class="cta-button">VIEW FULL BIOGRAPHY &amp; CV / PRESS</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

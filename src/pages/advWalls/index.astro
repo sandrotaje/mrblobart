@@ -2,9 +2,10 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import { getCollection } from 'astro:content';
+import { artworkSrcset } from '../../utils/images';
 import '../../styles/ArtworkList.css';
 
-const artworks = (await getCollection('advWalls')).sort((a, b) => a.data.id - b.data.id);
+const artworks = (await getCollection('advWalls')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
@@ -21,15 +22,13 @@ const artworks = (await getCollection('advWalls')).sort((a, b) => a.data.id - b.
         {artworks.map((artwork) => (
           <a href={`/advWalls/${artwork.data.id}`} class="artwork-item">
             <div class="artwork-image-container">
-              <img src={artwork.data.imageUrl} alt={artwork.data.title} loading="lazy" />
-              <div class="artwork-overlay">
-                <h3>{artwork.data.title}</h3>
-                {artwork.data.description && (
-                  <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                    {artwork.data.description.split('\n').slice(0, 3).join('\n')}
-                  </p>
-                )}
-              </div>
+              <img
+                src={artwork.data.imageUrl}
+                srcset={artworkSrcset(artwork.data.imageUrl)}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                alt={artwork.data.altText ?? artwork.data.title}
+                loading="lazy"
+              />
             </div>
           </a>
         ))}

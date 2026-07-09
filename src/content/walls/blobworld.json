@@ -1,0 +1,12 @@
+{
+  "id": "blobworld",
+  "order": 10,
+  "title": "BlobWorld",
+  "imageUrl": "/images/walls/blobworld.avif",
+  "altText": "Biomorphic sci-fi graffiti mural by Italian artist Mr Blob at The Bushwick Collective in Brooklyn, New York, featuring a surreal giant eye mechanical character merging into green leaves and roots.",
+  "description": "Painted at The Bushwick Collective in Brooklyn, BlobWorld assembles a surreal sci-fi organism across a blue-toned wall: a biomechanical creature built around a giant eye dissolves into leaves, roots and a strikingly realistic human hand. At the top, a tiny mouse presses a spray-can valve and releases the vertical beam of neon green energy that splits the composition — a playful nod to the aerosol medium itself.",
+  "location": "Bushwick, Brooklyn, NYC",
+  "year": "2022",
+  "festival": "BushwickCollective",
+  "technique": "Spray paint on wall"
+}
