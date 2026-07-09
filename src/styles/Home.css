@@ -20,9 +20,18 @@
   left: 0;
   right: 0;
   z-index: 2;
-  padding: 2rem 0;
+  padding: 1rem 0;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
   animation: fadeInUp 1s ease-out;
+}
+
+.hero-content .cta-buttons {
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.hero-content .cta-button.secondary {
+  text-transform: none;
 }
 
 .hero-content .container {
@@ -49,10 +58,4 @@
   object-fit: contain;
   object-position: center;
   display: block;
-}
-
-@media (max-width: 992px) {
-  .cta-buttons {
-    justify-content: center;
-  }
 }

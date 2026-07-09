@@ -60,6 +60,10 @@
   color: #e0e0e0;
 }
 
+.cta-button.email-button {
+  text-transform: none;
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
   .about-grid {

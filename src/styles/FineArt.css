@@ -1,0 +1,245 @@
+.fine-art-page {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Hero */
+.fine-art-hero {
+  position: relative;
+  /* Full viewport height minus header (~110px) and main-content top padding (2rem) */
+  min-height: calc(100vh - 142px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+              url('/images/about.avif') no-repeat center center/cover;
+  padding: 4rem 20px 8rem;
+}
+
+.fine-art-hero h1 {
+  font-size: 4rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 1s ease-out;
+}
+
+.fine-art-hero-subtitle {
+  font-size: 1.3rem;
+  color: #e0e0e0;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  animation: fadeInUp 1s ease-out;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.scroll-indicator:hover {
+  color: var(--primary-color);
+}
+
+.scroll-indicator-label {
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.scroll-indicator-chevron {
+  width: 14px;
+  height: 14px;
+  border-right: 3px solid var(--primary-color);
+  border-bottom: 3px solid var(--primary-color);
+  transform: rotate(45deg);
+  animation: chevronBounce 2s ease-in-out infinite;
+}
+
+@keyframes chevronBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: rotate(45deg) translate(0, 0);
+  }
+  40% {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+  60% {
+    transform: rotate(45deg) translate(3px, 3px);
+  }
+}
+
+/* Gallery banners */
+.gallery-banners {
+  padding: 4rem 0 2rem;
+  scroll-margin-top: 1rem;
+}
+
+.gallery-banners-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.gallery-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55vh;
+  min-height: 320px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: no-repeat center center/cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-banner-walls::before {
+  background-image: url('/images/walls/the-roots-of-change.avif');
+}
+
+.gallery-banner-canvas::before {
+  background-image: url('/images/canvas/blob.avif');
+}
+
+.gallery-banner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+.gallery-banner:hover::before {
+  transform: scale(1.05);
+}
+
+.gallery-banner:hover::after {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.gallery-banner-label {
+  position: relative;
+  z-index: 1;
+  font-family: Impact, impact-w01-2010, sans-serif;
+  font-size: 3.5rem;
+  color: #fff;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: color 0.3s ease;
+}
+
+.gallery-banner:hover .gallery-banner-label {
+  color: var(--primary-color);
+}
+
+/* The Artist */
+.artist-section {
+  padding: 4rem 0 5rem;
+  text-align: center;
+}
+
+.artist-section .container {
+  max-width: 800px;
+}
+
+.artist-section h2 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.artist-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #e0e0e0;
+  margin-bottom: 2.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .fine-art-hero h1 {
+    font-size: 3rem;
+  }
+
+  .artist-section h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .fine-art-hero {
+    padding: 3rem 15px 7rem;
+  }
+
+  .fine-art-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .fine-art-hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .scroll-indicator-label {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  .gallery-banners {
+    padding: 2rem 0 1rem;
+  }
+
+  .gallery-banners-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .gallery-banner {
+    height: 40vh;
+    min-height: 240px;
+  }
+
+  .gallery-banner-label {
+    font-size: 2.5rem;
+  }
+
+  .artist-section {
+    padding: 2rem 0 3rem;
+  }
+
+  .artist-section h2 {
+    font-size: 2rem;
+  }
+
+  .artist-section p {
+    font-size: 1rem;
+  }
+}
