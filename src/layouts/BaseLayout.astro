@@ -20,8 +20,14 @@ const {
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const ogImageAbsolute = new URL(ogImage, Astro.site);
 
+// Privacy-friendly analytics: create an account on goatcounter.com,
+// then set this to its code (e.g. 'mrblobart') to enable tracking.
+const GOATCOUNTER_CODE = '';
+
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/700.css';
 import '../styles/globals.css';
 ---
 
@@ -68,5 +74,12 @@ import '../styles/globals.css';
       </main>
       <Footer />
     </div>
+    {GOATCOUNTER_CODE && (
+      <script
+        is:inline
+        async
+        data-goatcounter={`https://${GOATCOUNTER_CODE}.goatcounter.com/count`}
+        src="https://gc.zgo.at/count.js"></script>
+    )}
   </body>
 </html>
