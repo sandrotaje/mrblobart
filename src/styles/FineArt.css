@@ -120,11 +120,11 @@
 }
 
 .gallery-banner-walls::before {
-  background-image: url('/images/walls/the-roots-of-change.avif');
+  background-image: url('/images/walls/the-roots-of-change-1280.avif');
 }
 
 .gallery-banner-canvas::before {
-  background-image: url('/images/canvas/blob.avif');
+  background-image: url('/images/canvas/blob-1280.avif');
 }
 
 .gallery-banner::after {

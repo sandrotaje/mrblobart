@@ -2,18 +2,27 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ImageModal from '../../components/ImageModal.astro';
 import { getCollection } from 'astro:content';
+import { artworkSrcset } from '../../utils/images';
 import '../../styles/ArtworkDetail.css';
 import '../../styles/ImageModal.css';
 
 export async function getStaticPaths() {
-  const artworks = await getCollection('advWalls');
-  return artworks.map((artwork) => ({
-    params: { id: artwork.data.id },
-    props: { artwork: artwork.data },
-  }));
+  const artworks = (await getCollection('advWalls')).sort((a, b) => a.data.order - b.data.order);
+  return artworks.map((artwork, index) => {
+    const prevEntry = index > 0 ? artworks[index - 1] : null;
+    const nextEntry = index < artworks.length - 1 ? artworks[index + 1] : null;
+    return {
+      params: { id: artwork.data.id },
+      props: {
+        artwork: artwork.data,
+        prev: prevEntry ? { id: prevEntry.data.id, title: prevEntry.data.title } : null,
+        next: nextEntry ? { id: nextEntry.data.id, title: nextEntry.data.title } : null,
+      },
+    };
+  });
 }
 
-const { artwork } = Astro.props;
+const { artwork, prev, next } = Astro.props;
 
 const paragraphs = (artwork.description ?? '')
   .split('\n\n')
@@ -28,6 +37,20 @@ const metaDescription =
     : metaSource;
 
 const metaLine = [artwork.location, artwork.year].filter(Boolean).join(' — ');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'VisualArtwork',
+  name: artwork.title,
+  image: new URL(artwork.imageUrl, Astro.site).href,
+  url: new URL(`/advWalls/${artwork.id}`, Astro.site).href,
+  creator: { '@type': 'Person', name: 'Mr Blob', url: 'https://mrblobart.com' },
+  artform: 'Mural',
+  ...(artwork.technique && { artMedium: artwork.technique }),
+  ...(artwork.year && { dateCreated: artwork.year }),
+  ...(artwork.location && { locationCreated: { '@type': 'Place', name: artwork.location } }),
+  ...(artwork.description?.trim() && { description: artwork.description }),
+};
 ---
 
 <BaseLayout
@@ -38,9 +61,15 @@ const metaLine = [artwork.location, artwork.year].filter(Boolean).join(' — ');
   ogImage={artwork.imageUrl}
   ogUrl={`https://mrblobart.com/advWalls/${artwork.id}`}
 >
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
   <div class="artwork-detail-page">
     <div class="artwork-detail-figure" data-modal-src={artwork.imageUrl}>
-      <img src={artwork.imageUrl} alt={artwork.altText ?? artwork.title} />
+      <img
+        src={artwork.imageUrl}
+        srcset={artworkSrcset(artwork.imageUrl)}
+        sizes="100vw"
+        alt={artwork.altText ?? artwork.title}
+      />
     </div>
     <div class="artwork-detail-info">
       <h1 class="artwork-detail-title">{artwork.title}</h1>
@@ -70,6 +99,34 @@ const metaLine = [artwork.location, artwork.year].filter(Boolean).join(' — ');
         </div>
       )}
     </div>
+    {(prev || next) && (
+      <nav class="artwork-detail-nav" aria-label="Artwork navigation">
+        {prev ? (
+          <a
+            href={`/advWalls/${prev.id}`}
+            class="artwork-nav-link artwork-nav-prev"
+            aria-label={`Previous artwork: ${prev.title}`}
+          >
+            <span class="artwork-nav-arrow" aria-hidden="true">←</span>
+            <span class="artwork-nav-title">{prev.title}</span>
+          </a>
+        ) : (
+          <span class="artwork-nav-spacer" aria-hidden="true" />
+        )}
+        {next ? (
+          <a
+            href={`/advWalls/${next.id}`}
+            class="artwork-nav-link artwork-nav-next"
+            aria-label={`Next artwork: ${next.title}`}
+          >
+            <span class="artwork-nav-title">{next.title}</span>
+            <span class="artwork-nav-arrow" aria-hidden="true">→</span>
+          </a>
+        ) : (
+          <span class="artwork-nav-spacer" aria-hidden="true" />
+        )}
+      </nav>
+    )}
     <ImageModal />
   </div>
 </BaseLayout>
